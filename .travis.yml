@@ -1,8 +1,13 @@
 language: go
 
 go:
-  - 1.12
+  - 1.12.x
 
 script:
   - go build
-  - go test
+  - go vet
+  - go test -race -cover
+
+# Only clone the most recent commit.
+git:
+  depth: 1

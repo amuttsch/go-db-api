@@ -1,4 +1,4 @@
-# DB Open Data in Go [![GoDoc](https://godoc.org/github.com/amuttsch/go-db-api?status.svg)](https://godoc.org/github.com/amuttsch/go-db-api) [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
+# DB Open Data in Go [![GoDoc](https://godoc.org/github.com/amuttsch/go-db-api?status.svg)](https://godoc.org/github.com/amuttsch/go-db-api) [![Build Status](https://travis-ci.org/amuttsch/go-db-api.svg?branch=master)](https://travis-ci.org/amuttsch/go-db-api) [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
 This library supports some of the APIs available from [Deutsche Bahn Open API](https://developer.deutschebahn.com/store/site/pages/home.jag).
 
