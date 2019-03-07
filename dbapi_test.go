@@ -8,7 +8,7 @@ import (
 
 var (
 	serverAddr string
-	once sync.Once
+	once       sync.Once
 )
 
 func startMockServer() {
