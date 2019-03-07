@@ -96,9 +96,19 @@ type Regionalbereich struct {
 // a station.
 // See: https://www.bahnhof.de/bahnhof-de/ueberuns/3-s-konzept-519192
 type SZentrale struct {
-	Number            int    `json:"number,omitempty"`
-	Name              string `json:"name,omitempty"`
-	PublicPhoneNumber string `json:"publicPhoneNumber,omitempty"`
+	Address struct {
+		City    string `json:"city,omitempty"`
+		Zipcode string `json:"zipcode,omitempty"`
+		Street  string `json:"street,omitempty"`
+	} `json:"address,omitempty"`
+	PublicFaxNumber     string `json:"public_fax_number,omitempty"`
+	MobilePhoneNumber   string `json:"mobile_phone_number,omitempty"`
+	InternalPhoneNumber string `json:"internal_phone_number,omitempty"`
+	InternalFaxNumber   string `json:"internal_fax_number,omitempty"`
+	Email               string `json:"email,omitempty"`
+	Number              int    `json:"number,omitempty"`
+	PublicPhoneNumber   string `json:"public_phone_number,omitempty"`
+	Name                string `json:"name,omitempty"`
 }
 
 // Aufgabentraeger holds information about the entity that is responsible for local trains.
@@ -142,17 +152,17 @@ type Station struct {
 	Aufgabentraeger         Aufgabentraeger     `json:"aufgabentraeger,omitempty"`
 }
 
-// StationDataResponse holds meta information about the response and the actual station set.
-type StationDataResponse struct {
+// StationDataStationResponse holds meta information about the response and the actual station set.
+type StationDataStationResponse struct {
 	Offset int       `json:"offset,omitempty"`
 	Total  int       `json:"total,omitempty"`
 	Limit  int       `json:"limit,omitempty"`
 	Result []Station `json:"result,omitempty"`
 }
 
-// StationDataRequest is used by ByFilter to query the station API. If it's not chaned,
+// StationDataStationRequest is used by ByFilter to query the station API. If it's not chaned,
 // all stations are queried.
-type StationDataRequest struct {
+type StationDataStationRequest struct {
 	Offset          int    `url:"offset,omitempty"`
 	Limit           int    `url:"limit,omitempty"`
 	Searchstring    string `url:"searchstring,omitempty"`
@@ -161,6 +171,14 @@ type StationDataRequest struct {
 	Eva             int    `url:"eva,omitempty"`
 	Ril             string `url:"ril,omitempty"`
 	Logicaloperator string `url:"logicaloperator,omitempty"`
+}
+
+// StationDataStationResponse holds meta information about the response and the actual station set.
+type StationDataSZentralenResponse struct {
+	Offset int         `json:"offset,omitempty"`
+	Total  int         `json:"total,omitempty"`
+	Limit  int         `json:"limit,omitempty"`
+	Result []SZentrale `json:"result,omitempty"`
 }
 
 // StationDataRateErrorDetailsResponse contains information about the rate limit.
@@ -198,9 +216,9 @@ func (e *StationDataErrorResponse) Error() string {
 	return fmt.Sprintf("Error %d: %s", e.ErrNo, e.ErrMsg)
 }
 
-// ByID returns station information for the given id or an error if the
+// StationByID returns station information for the given id or an error if the
 // id is invalid, rate limiting or some other error occurred.
-func (s *StationDataAPI) ByID(id int) (*StationDataResponse, error) {
+func (s *StationDataAPI) StationByID(id int) (*StationDataStationResponse, error) {
 	url := fmt.Sprintf("%s%s/stations/%d", APIURL, stadaAPIPath, id)
 
 	req, err := http.NewRequest("GET", url, nil)
@@ -214,13 +232,15 @@ func (s *StationDataAPI) ByID(id int) (*StationDataResponse, error) {
 		return nil, err
 	}
 
-	return s.processResponse(resp)
+	sdr := &StationDataStationResponse{}
+	err = s.processResponse(resp, sdr)
+	return sdr, err
 }
 
-// ByFilter returns a list of station information by the given filter or an error if the
-// id is invalid, rate limiting or some other error occurred. If the StationDataRequest is
+// StationByFilter returns a list of station information by the given filter or an error if the
+// id is invalid, rate limiting or some other error occurred. If the StationDataStationRequest is
 // not set, all stations are returned (max 10.000) - same as All().
-func (s *StationDataAPI) ByFilter(stationRequest StationDataRequest) (*StationDataResponse, error) {
+func (s *StationDataAPI) StationByFilter(stationRequest StationDataStationRequest) (*StationDataStationResponse, error) {
 	q, err := query.Values(stationRequest)
 	if err != nil {
 		return nil, err
@@ -239,15 +259,39 @@ func (s *StationDataAPI) ByFilter(stationRequest StationDataRequest) (*StationDa
 		return nil, err
 	}
 
-	return s.processResponse(resp)
+	sdr := &StationDataStationResponse{}
+	err = s.processResponse(resp, sdr)
+	return sdr, err
 }
 
-// All returns station information for all available stations. Same as calling
-// ByFilter(StationDataRequest{}).
-func (s *StationDataAPI) All() (*StationDataResponse, error) {
-	return s.ByFilter(StationDataRequest{})
+// StationAll returns station information for all available stations. Same as calling
+// StationByFilter(StationDataStationRequest{}).
+func (s *StationDataAPI) StationAll() (*StationDataStationResponse, error) {
+	return s.StationByFilter(StationDataStationRequest{})
 }
 
+// SZentralenByID returns station information for the given id or an error if the
+// id is invalid, rate limiting or some other error occurred.
+func (s *StationDataAPI) SZentralenByID(id int) (*StationDataSZentralenResponse, error) {
+	url := fmt.Sprintf("%s%s/szentralen/%d", APIURL, stadaAPIPath, id)
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Accept", "application/json")
+
+	resp, err := s.sendRequest(req)
+	if err != nil {
+		return nil, err
+	}
+
+	sdr := &StationDataSZentralenResponse{}
+	err = s.processResponse(resp, sdr)
+	return sdr, err
+}
+
+// StationByFilter returns a list of station information by the given filter or an error if the
 func (s *StationDataAPI) limitRate() {
 	// Throttle API in case a tier was specified
 	if s.rateThrottleTicker != nil && s.firstRequestProcessed {
@@ -267,7 +311,7 @@ func (s *StationDataAPI) sendRequest(req *http.Request) (*http.Response, error) 
 	return s.client.httpClient.Do(req)
 }
 
-func (s *StationDataAPI) processResponse(resp *http.Response) (sdr *StationDataResponse, err error) {
+func (s *StationDataAPI) processResponse(resp *http.Response, data interface{}) (err error) {
 	defer func() {
 		if cerr := resp.Body.Close(); cerr != nil && err == nil {
 			err = cerr
@@ -276,31 +320,30 @@ func (s *StationDataAPI) processResponse(resp *http.Response) (sdr *StationDataR
 
 	switch resp.StatusCode {
 	case 200:
-		stationDataResponse := StationDataResponse{}
-		err := json.NewDecoder(resp.Body).Decode(&stationDataResponse)
+		err := json.NewDecoder(resp.Body).Decode(data)
 		if err != nil {
-			return nil, err
+			return err
 		}
-		return &stationDataResponse, nil
+		return nil
 	case 404, 500:
 		stationDataErrorResponse := StationDataErrorResponse{}
 		err := json.NewDecoder(resp.Body).Decode(&stationDataErrorResponse)
 		if err != nil {
-			return nil, err
+			return err
 		}
-		return nil, &stationDataErrorResponse
+		return nil
 	case 429:
 		stationDataRateErrorResponse := StationDataRateErrorResponse{}
 		err := json.NewDecoder(resp.Body).Decode(&stationDataRateErrorResponse)
 		if err != nil {
-			return nil, err
+			return err
 		}
-		return nil, &stationDataRateErrorResponse
+		return nil
 	default:
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			return nil, err
+			return err
 		}
-		return nil, errors.New(string(body))
+		return errors.New(string(body))
 	}
 }

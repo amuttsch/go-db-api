@@ -22,7 +22,7 @@ func init() {
 	})
 }
 
-func TestStationDataAPI_ByID(t *testing.T) {
+func TestStationDataAPI_StationByID(t *testing.T) {
 	assert := assert.New(t)
 
 	once.Do(startMockServer)
@@ -32,7 +32,7 @@ func TestStationDataAPI_ByID(t *testing.T) {
 	c := New("SomeFakeToken", Config{})
 	s := c.StationDataAPI()
 
-	stationResp, _ := s.ByID(1)
+	stationResp, _ := s.StationByID(1)
 
 	assert.NotNil(stationResp)
 
@@ -66,7 +66,7 @@ func TestStationDataAPI_ByID(t *testing.T) {
 	assert.Equal(50.767558188, station.Ril100Identifiers[0].GeographicCoordinates.Coordinates[1])
 }
 
-func TestStationDataAPI_ByFilter(t *testing.T) {
+func TestStationDataAPI_StationByFilter(t *testing.T) {
 	assert := assert.New(t)
 
 	once.Do(startMockServer)
@@ -76,12 +76,32 @@ func TestStationDataAPI_ByFilter(t *testing.T) {
 	c := New("SomeFakeToken", Config{})
 	s := c.StationDataAPI()
 
-	stationResp, _ := s.ByFilter(StationDataRequest{
+	stationResp, _ := s.StationByFilter(StationDataStationRequest{
 		Federalstate: "hessen",
 	})
 	assert.NotNil(stationResp)
 
 	assert.Equal(429, stationResp.Total)
+}
+
+func TestStationDataAPI_SZentralenByID(t *testing.T) {
+	assert := assert.New(t)
+
+	once.Do(startMockServer)
+
+	APIURL = "http://" + serverAddr
+
+	c := New("SomeFakeToken", Config{})
+	s := c.StationDataAPI()
+
+	szResp, _ := s.SZentralenByID(15)
+
+	assert.NotNil(szResp)
+
+	assert.Equal(1, szResp.Total)
+	sz := szResp.Result[0]
+
+	assert.Equal("Duisburg Hbf", sz.Name)
 }
 
 func TestRateLimiter(t *testing.T) {
@@ -97,9 +117,9 @@ func TestRateLimiter(t *testing.T) {
 	s := c.StationDataAPI()
 
 	timeStartFirst := time.Now()
-	s.ByID(1)
+	s.StationByID(1)
 	timeStartSecond := time.Now()
-	s.ByID(1)
+	s.StationByID(1)
 	timeEnd := time.Now()
 
 	durationFirstCall := timeStartSecond.Sub(timeStartFirst)
