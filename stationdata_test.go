@@ -2,33 +2,43 @@ package dbapi
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func TestStationDataAPI_ByID(t *testing.T) {
-	assert := assert.New(t)
+func init() {
+	http.HandleFunc("/stada/v2/", func(writer http.ResponseWriter, request *http.Request) {
+		filename := "testdata" + request.URL.String() + ".json"
 
-	http.HandleFunc("/stada/v2/stations/1", func(writer http.ResponseWriter, request *http.Request) {
-		filename := "testdata" + request.URL.Path + ".json"
+		fmt.Println("Sending data from file ", filename)
+
 		dat, _ := ioutil.ReadFile(filename)
 
 		fmt.Fprint(writer, string(dat))
 	})
+}
+
+func TestStationDataAPI_ByID(t *testing.T) {
+	assert := assert.New(t)
 
 	once.Do(startMockServer)
 
-	APIURL = "http://" + serverAddr + "/"
+	APIURL = "http://" + serverAddr
 
 	c := New("SomeFakeToken", Config{})
 	s := c.StationDataAPI()
 
 	stationResp, _ := s.ByID(1)
-	station := stationResp.Result[0]
+
+	assert.NotNil(stationResp)
 
 	assert.Equal(1, stationResp.Total)
+	station := stationResp.Result[0]
+
 	assert.Equal("Aachen Hbf", station.Name)
 	assert.Equal(1, station.Number)
 	assert.Equal(false, station.HasDBLounge)
@@ -54,4 +64,47 @@ func TestStationDataAPI_ByID(t *testing.T) {
 	assert.Equal("Point", station.Ril100Identifiers[0].GeographicCoordinates.Type)
 	assert.Equal(6.091201396, station.Ril100Identifiers[0].GeographicCoordinates.Coordinates[0])
 	assert.Equal(50.767558188, station.Ril100Identifiers[0].GeographicCoordinates.Coordinates[1])
+}
+
+func TestStationDataAPI_ByFilter(t *testing.T) {
+	assert := assert.New(t)
+
+	once.Do(startMockServer)
+
+	APIURL = "http://" + serverAddr
+
+	c := New("SomeFakeToken", Config{})
+	s := c.StationDataAPI()
+
+	stationResp, _ := s.ByFilter(StationDataRequest{
+		Federalstate: "hessen",
+	})
+	assert.NotNil(stationResp)
+
+	assert.Equal(429, stationResp.Total)
+}
+
+func TestRateLimiter(t *testing.T) {
+	assert := assert.New(t)
+
+	once.Do(startMockServer)
+
+	APIURL = "http://" + serverAddr + "/"
+
+	c := New("SomeFakeToken", Config{
+		StationDataConfig: StationDataConfig{rateLimitPerMinute: 20}, // Should sleep for ~3 seconds
+	})
+	s := c.StationDataAPI()
+
+	timeStartFirst := time.Now()
+	s.ByID(1)
+	timeStartSecond := time.Now()
+	s.ByID(1)
+	timeEnd := time.Now()
+
+	durationFirstCall := timeStartSecond.Sub(timeStartFirst)
+	durationSecondCall := timeEnd.Sub(timeStartSecond)
+
+	assert.True(durationFirstCall.Seconds() < 1)
+	assert.True(durationSecondCall.Seconds() > 3)
 }
