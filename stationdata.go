@@ -11,7 +11,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-var stadaAPIPath = "stada/v2/"
+const stadaAPIPath = "/stada/v2"
 
 type MailingAddress struct {
 	City        string `json:"city,omitempty"`
@@ -156,7 +156,7 @@ type StationDataErrorResponse struct {
 }
 
 type StationDataAPI struct {
-	client                *APIClient
+	client                *Client
 	rateThrottleTicker    *time.Ticker
 	firstRequestProcessed bool
 }
@@ -172,7 +172,7 @@ func (e *StationDataErrorResponse) Error() string {
 // ByID returns station information for the given id or an error if the
 // id is invalid, rate limiting or some other error occurred.
 func (s *StationDataAPI) ByID(id int) (*StationDataResponse, error) {
-	url := fmt.Sprintf("%s%sstations/%d", APIURL, stadaAPIPath, id)
+	url := fmt.Sprintf("%s%s/stations/%d", APIURL, stadaAPIPath, id)
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -197,7 +197,7 @@ func (s *StationDataAPI) ByFilter(stationRequest *StationDataRequest) (*StationD
 		return nil, err
 	}
 
-	url := fmt.Sprintf("%s%sstations?%s", APIURL, stadaAPIPath, q.Encode())
+	url := fmt.Sprintf("%s%s/stations?%s", APIURL, stadaAPIPath, q.Encode())
 
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

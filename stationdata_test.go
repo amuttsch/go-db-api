@@ -12,7 +12,7 @@ func TestStationDataAPI_ByID(t *testing.T) {
 	assert := assert.New(t)
 
 	http.HandleFunc("/stada/v2/stations/1", func(writer http.ResponseWriter, request *http.Request) {
-		filename := "testdata"+request.URL.Path+".json"
+		filename := "testdata" + request.URL.Path + ".json"
 		dat, _ := ioutil.ReadFile(filename)
 
 		fmt.Fprint(writer, string(dat))
@@ -22,7 +22,7 @@ func TestStationDataAPI_ByID(t *testing.T) {
 
 	APIURL = "http://" + serverAddr + "/"
 
-	c := New("SomeFakeToken", APIConfig{})
+	c := New("SomeFakeToken", Config{})
 	s := c.StationDataAPI()
 
 	stationResp, _ := s.ByID(1)

@@ -1,6 +1,6 @@
 # DB Open Data in Go [![GoDoc](https://godoc.org/github.com/amuttsch/go-db-api?status.svg)](https://godoc.org/github.com/amuttsch/go-db-api) [![Build Status](https://travis-ci.org/amuttsch/go-db-api.svg?branch=master)](https://travis-ci.org/amuttsch/go-db-api) [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
-This library supports some of the APIs available from [Deutsche Bahn Open API](https://developer.deutschebahn.com/store/site/pages/home.jag).
+This client library supports some of the APIs available from [Deutsche Bahn Open API](https://developer.deutschebahn.com/store/site/pages/home.jag).
 
 Currently supported:
 
@@ -38,6 +38,6 @@ Get all stations in the federal state of Hessen:
 
 ## Rate limiting
 
-Most APIs from Deutsche Bahn are rate limited. When you subscribe to an API you have to choose a tier which sets the amount of requests you can make on this API. `go-db-api` has a built in rate limiting which blocks until the next request can be made if you configure it in the `APIConfig`. In the case of a limit of 10 requests per minute, each 6 seconds a request is allowed to processes.
+Most APIs from Deutsche Bahn are rate limited. When you subscribe to an API you have to choose a tier which sets the amount of requests you can make on this API. `go-db-api` has a built in rate limiting which blocks until the next request can be made if you configure it in the `APIConfig`. In the case of a limit of 10 requests per minute, each 6 seconds a request is allowed to process.
 
 If you want to implement your own rate limiting, set the `rateLimitPerMinute` to zero (default).
