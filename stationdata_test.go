@@ -142,5 +142,5 @@ func TestRateLimiter(t *testing.T) {
 	durationSecondCall := timeEnd.Sub(timeStartSecond)
 
 	assert.True(durationFirstCall.Seconds() < 1)
-	assert.True(durationSecondCall.Seconds() >= 3)
+	assert.True(durationSecondCall.Seconds() >= 3, "Duration must be >= 3 seonds, was "+durationSecondCall.String())
 }
