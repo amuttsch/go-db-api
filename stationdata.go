@@ -160,7 +160,7 @@ type StationDataStationResponse struct {
 	Result []Station `json:"result,omitempty"`
 }
 
-// StationDataStationRequest is used by ByFilter to query the station API. If it's not chaned,
+// StationDataStationRequest is used by ByFilter to query the station API. If it's not changed,
 // all stations are queried.
 type StationDataStationRequest struct {
 	Offset          int    `url:"offset,omitempty"`
@@ -171,6 +171,12 @@ type StationDataStationRequest struct {
 	Eva             int    `url:"eva,omitempty"`
 	Ril             string `url:"ril,omitempty"`
 	Logicaloperator string `url:"logicaloperator,omitempty"`
+}
+
+// StationDataStationRequest is used by ByFilter to query the szentralen API.
+type StationDataSZentralenRequest struct {
+	Offset int `json:"offset,omitempty"`
+	Limit  int `json:"limit,omitempty"`
 }
 
 // StationDataStationResponse holds meta information about the response and the actual station set.
@@ -289,6 +295,39 @@ func (s *StationDataAPI) SZentralenByID(id int) (*StationDataSZentralenResponse,
 	sdr := &StationDataSZentralenResponse{}
 	err = s.processResponse(resp, sdr)
 	return sdr, err
+}
+
+// SZentralenByFilter returns a list of szentralen information by the given filter or an error if the
+// id is invalid, rate limiting or some other error occurred. If the StationDataSZentralenRequest is
+// not set, all szentralen are returned (max 10.000) - same as All().
+func (s *StationDataAPI) SZentralenByFilter(szentralenRequest StationDataSZentralenRequest) (*StationDataSZentralenResponse, error) {
+	q, err := query.Values(szentralenRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	url := fmt.Sprintf("%s%s/szentralen?%s", APIURL, stadaAPIPath, q.Encode())
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Accept", "application/json")
+
+	resp, err := s.sendRequest(req)
+	if err != nil {
+		return nil, err
+	}
+
+	sdr := &StationDataSZentralenResponse{}
+	err = s.processResponse(resp, sdr)
+	return sdr, err
+}
+
+// SZentralenAll returns all SZentralen information. Same as calling
+// SZentralenByFilter(StationDataSZentralenRequest{}).
+func (s *StationDataAPI) SZentralenAll() (*StationDataSZentralenResponse, error) {
+	return s.SZentralenByFilter(StationDataSZentralenRequest{})
 }
 
 // StationByFilter returns a list of station information by the given filter or an error if the

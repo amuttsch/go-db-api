@@ -7,7 +7,7 @@ Currently supported:
 
 | API | Status
 |-----|------------
-| [Station Data v2](https://developer.deutschebahn.com/store/apis/info?name=StaDa-Station_Data&version=v2&provider=DBOpenData)    | Partial (stations) |
+| [Station Data v2](https://developer.deutschebahn.com/store/apis/info?name=StaDa-Station_Data&version=v2&provider=DBOpenData)    | Complete |
 
 ## Installation
 

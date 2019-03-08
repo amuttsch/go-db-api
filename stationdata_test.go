@@ -104,6 +104,22 @@ func TestStationDataAPI_SZentralenByID(t *testing.T) {
 	assert.Equal("Duisburg Hbf", sz.Name)
 }
 
+func TestStationDataAPI_SZentralenAll(t *testing.T) {
+	assert := assert.New(t)
+
+	once.Do(startMockServer)
+
+	APIURL = "http://" + serverAddr
+
+	c := New("SomeFakeToken", Config{})
+	s := c.StationDataAPI()
+
+	szentralenResp, _ := s.SZentralenAll()
+	assert.NotNil(szentralenResp)
+
+	assert.Equal(30, szentralenResp.Total)
+}
+
 func TestRateLimiter(t *testing.T) {
 	assert := assert.New(t)
 

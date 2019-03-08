@@ -1,0 +1,448 @@
+{
+    "offset": 0,
+    "limit": 10000,
+    "total": 30,
+    "result": [
+        {
+            "address": {
+                "city": "Basel",
+                "zipcode": "CH4058",
+                "street": "Schwarzwaldallee 200"
+            },
+            "publicFaxNumber": "004161/6901307",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "97131/232",
+            "internalFaxNumber": "97131/307",
+            "email": "",
+            "number": 27,
+            "publicPhoneNumber": "004161/6901232",
+            "name": "Basel Bad Bf"
+        },
+        {
+            "address": {
+                "city": "Essen",
+                "zipcode": "45127",
+                "street": "Am Hauptbahnhof 5"
+            },
+            "publicFaxNumber": "0201/1821054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "944/1055",
+            "internalFaxNumber": "944/1054",
+            "email": "",
+            "number": 17,
+            "publicPhoneNumber": "0201/1821055",
+            "name": "Essen Hbf"
+        },
+        {
+            "address": {
+                "city": "Duisburg",
+                "zipcode": "47051",
+                "street": "Portsmouthplatz 1"
+            },
+            "publicFaxNumber": "0203/30172659",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9481/1055",
+            "internalFaxNumber": "9481/2659",
+            "email": "",
+            "number": 15,
+            "publicPhoneNumber": "0203/30171055",
+            "name": "Duisburg Hbf"
+        },
+        {
+            "address": {
+                "city": "D\u00fcsseldorf",
+                "zipcode": "40210",
+                "street": "Konrad-Adenauer-Platz 14"
+            },
+            "publicFaxNumber": "069/26091 5669",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9415/1055",
+            "internalFaxNumber": "9502/5669",
+            "email": "",
+            "number": 16,
+            "publicPhoneNumber": "0211/36801055",
+            "name": "D\u00fcsseldorf Hbf"
+        },
+        {
+            "address": {
+                "city": "K\u00f6ln",
+                "zipcode": "50667",
+                "street": "Trankgasse 11"
+            },
+            "publicFaxNumber": "0221/1411054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "943/1055",
+            "internalFaxNumber": "943/1054",
+            "email": "",
+            "number": 19,
+            "publicPhoneNumber": "0221/1411055",
+            "name": "K\u00f6ln Hbf"
+        },
+        {
+            "address": {
+                "city": "Dortmund",
+                "zipcode": "44137",
+                "street": "K\u00f6nigswall 15"
+            },
+            "publicFaxNumber": "0231/7291054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9461/1055",
+            "internalFaxNumber": "9461/1054",
+            "email": "",
+            "number": 14,
+            "publicPhoneNumber": "0231/7291055",
+            "name": "Dortmund Hbf"
+        },
+        {
+            "address": {
+                "city": "Berlin",
+                "zipcode": "10243",
+                "street": "Koppenstr. 3"
+            },
+            "publicFaxNumber": "030/2971054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "999/1055",
+            "internalFaxNumber": "999/1054",
+            "email": "",
+            "number": 73,
+            "publicPhoneNumber": "030/2971055",
+            "name": "Berlin Ostbahnhof"
+        },
+        {
+            "address": {
+                "city": "Potsdam",
+                "zipcode": "14473",
+                "street": "Friedrich-Engels-Str. 99"
+            },
+            "publicFaxNumber": "(069) 260915770",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9978 / 7520",
+            "internalFaxNumber": "9502-5770",
+            "email": "",
+            "number": 67,
+            "publicPhoneNumber": "0331/2357520",
+            "name": "Potsdam"
+        },
+        {
+            "address": {
+                "city": "Leipzig",
+                "zipcode": "04109",
+                "street": "Willy-Brandt-Platz 5"
+            },
+            "publicFaxNumber": "0341/9681054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "927/1055",
+            "internalFaxNumber": "927/1054",
+            "email": "",
+            "number": 55,
+            "publicPhoneNumber": "0341/9681055",
+            "name": "Leipzig Hbf"
+        },
+        {
+            "address": {
+                "city": "Dresden",
+                "zipcode": "01097",
+                "street": "Schlesischer Platz 1"
+            },
+            "publicFaxNumber": "0351/4611054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "987/1055",
+            "internalFaxNumber": "987/1054",
+            "email": "",
+            "number": 53,
+            "publicPhoneNumber": "0351/4611055",
+            "name": "Dresden"
+        },
+        {
+            "address": {
+                "city": "Erfurt",
+                "zipcode": "99084",
+                "street": "Willy-Brandt-Platz 12"
+            },
+            "publicFaxNumber": "0361/3001054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "980/1055",
+            "internalFaxNumber": "980/1054",
+            "email": "",
+            "number": 50,
+            "publicPhoneNumber": "0361/3001055",
+            "name": "Erfurt Hbf"
+        },
+        {
+            "address": {
+                "city": "Rostock",
+                "zipcode": "18055",
+                "street": "Albrecht-Kossel-Platz 1"
+            },
+            "publicFaxNumber": "0381/2401054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9930/1055",
+            "internalFaxNumber": "9930/1054",
+            "email": "",
+            "number": 69,
+            "publicPhoneNumber": "0381/2401055",
+            "name": "Rostock Hbf"
+        },
+        {
+            "address": {
+                "city": "Magdeburg",
+                "zipcode": "39104",
+                "street": "Bahnhofstr. 69"
+            },
+            "publicFaxNumber": "0391/5491054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "923/1055",
+            "internalFaxNumber": "923/1054",
+            "email": "",
+            "number": 59,
+            "publicPhoneNumber": "0391/5491055",
+            "name": "Magdeburg Hbf"
+        },
+        {
+            "address": {
+                "city": "Hamburg",
+                "zipcode": "20099",
+                "street": "Hachmannplatz 16"
+            },
+            "publicFaxNumber": "040-3918-3209",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "930-1053",
+            "internalFaxNumber": "930-3209",
+            "email": "",
+            "number": 1,
+            "publicPhoneNumber": "040-3918-1 053",
+            "name": "Hamburg Hbf"
+        },
+        {
+            "address": {
+                "city": "Bremen",
+                "zipcode": "28195",
+                "street": "Bahnhofsplatz 15"
+            },
+            "publicFaxNumber": "0421-221-4781",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "934-4780",
+            "internalFaxNumber": "934-4781",
+            "email": "",
+            "number": 6,
+            "publicPhoneNumber": "0421-221-4780",
+            "name": "Bremen Hbf"
+        },
+        {
+            "address": {
+                "city": "Kiel",
+                "zipcode": "24103",
+                "street": "Sophienblatt 25-27"
+            },
+            "publicFaxNumber": "0431-2479-1054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9323-1055",
+            "internalFaxNumber": "9323-1054",
+            "email": "",
+            "number": 3,
+            "publicPhoneNumber": "0431-2479-1055",
+            "name": "Kiel Hbf"
+        },
+        {
+            "address": {
+                "city": "Hannover",
+                "zipcode": "30159",
+                "street": "Ernst-August-Platz 1"
+            },
+            "publicFaxNumber": "0511/2861054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "933/1055",
+            "internalFaxNumber": "933/1054",
+            "email": "",
+            "number": 8,
+            "publicPhoneNumber": "0511/2861055",
+            "name": "Hannover Hbf"
+        },
+        {
+            "address": {
+                "city": "Kassel-Wilhelmsh\u00f6he",
+                "zipcode": "34131",
+                "street": "Willi-Brandt-Platz 1"
+            },
+            "publicFaxNumber": "0561/7861054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9530/1055",
+            "internalFaxNumber": "9530/1054",
+            "email": "",
+            "number": 48,
+            "publicPhoneNumber": "0561/7861055",
+            "name": "Kassel-Wilhelmsh\u00f6he"
+        },
+        {
+            "address": {
+                "city": "Mainz",
+                "zipcode": "55116",
+                "street": "Alicenplatz 6"
+            },
+            "publicFaxNumber": "06131/151054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "959/1055",
+            "internalFaxNumber": "959/1054",
+            "email": "",
+            "number": 24,
+            "publicPhoneNumber": "06131/151055",
+            "name": "Mainz Hbf"
+        },
+        {
+            "address": {
+                "city": "Mannheim",
+                "zipcode": "68161",
+                "street": "Willy-Brandt-Platz 17"
+            },
+            "publicFaxNumber": "0621/8301054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9734/1055",
+            "internalFaxNumber": "9734/1054",
+            "email": "",
+            "number": 32,
+            "publicPhoneNumber": "0621/8301055",
+            "name": "Mannheim Hbf"
+        },
+        {
+            "address": {
+                "city": "Saarbr\u00fccken",
+                "zipcode": "66111",
+                "street": "Am Hauptbahnhof 6-12"
+            },
+            "publicFaxNumber": "0681/308-2182",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "956/1055",
+            "internalFaxNumber": "956/2182",
+            "email": "",
+            "number": 25,
+            "publicPhoneNumber": "0681/308-1055",
+            "name": "Saarbr\u00fccken Hbf"
+        },
+        {
+            "address": {
+                "city": "Frankfurt (Main)",
+                "zipcode": "60329",
+                "street": "Im Hauptbahnhof"
+            },
+            "publicFaxNumber": "069/2651054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "955/1055",
+            "internalFaxNumber": "955/1054",
+            "email": "",
+            "number": 45,
+            "publicPhoneNumber": "069/2651055",
+            "name": "Frankfurt (Main) Hbf"
+        },
+        {
+            "address": {
+                "city": "Stuttgart",
+                "zipcode": "70173",
+                "street": "Arnulf-Klett-Platz 2"
+            },
+            "publicFaxNumber": "0711/20921054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "976/1055",
+            "internalFaxNumber": "976/1054",
+            "email": "",
+            "number": 33,
+            "publicPhoneNumber": "0711/20921055",
+            "name": "Stuttgart Hbf"
+        },
+        {
+            "address": {
+                "city": "Heilbronn",
+                "zipcode": "74072",
+                "street": "Bahnhofstr. 30"
+            },
+            "publicFaxNumber": "07131/614403",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9746/375",
+            "internalFaxNumber": "9746/403",
+            "email": "",
+            "number": 30,
+            "publicPhoneNumber": "07131/614375",
+            "name": "Heilbronn Hbf"
+        },
+        {
+            "address": {
+                "city": "Freiburg (Breisgau)",
+                "zipcode": "79106",
+                "street": "Wentzingerstr. 11a"
+            },
+            "publicFaxNumber": "0761/2121054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9715/1055",
+            "internalFaxNumber": "9715/1054",
+            "email": "",
+            "number": 28,
+            "publicPhoneNumber": "0761/2121055",
+            "name": "Freiburg (Breisgau) Hbf"
+        },
+        {
+            "address": {
+                "city": "M\u00fchldorf (Oberbay)",
+                "zipcode": "84453",
+                "street": "Bahnhofsplatz 6"
+            },
+            "publicFaxNumber": "08631/609269",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "9634 241",
+            "internalFaxNumber": "9634 269",
+            "email": "",
+            "number": 1001,
+            "publicPhoneNumber": "08631/609241",
+            "name": "S\u00fcdostBayernBahn Service M\u00fchldorf"
+        },
+        {
+            "address": {
+                "city": "M\u00fcnchen",
+                "zipcode": "80335",
+                "street": "Bayerstr. 10a"
+            },
+            "publicFaxNumber": "089/13081054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "962/1055",
+            "internalFaxNumber": "962/1054",
+            "email": "",
+            "number": 38,
+            "publicPhoneNumber": "089/13081055",
+            "name": "M\u00fcnchen Hbf"
+        },
+        {
+            "address": {
+                "city": "N\u00fcrnberg",
+                "zipcode": "90443",
+                "street": "Bahnhofsplatz 9"
+            },
+            "publicFaxNumber": "0911/21949921",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "966/1055",
+            "internalFaxNumber": "966/49921",
+            "email": "",
+            "number": 42,
+            "publicPhoneNumber": "0911/2191055",
+            "name": "N\u00fcrnberg Hbf"
+        },
+        {
+            "address": {
+                "city": "W\u00fcrzburg",
+                "zipcode": "97070",
+                "street": "Bahnhofplatz 4"
+            },
+            "publicFaxNumber": "0931/341054",
+            "mobilePhoneNumber": "",
+            "internalPhoneNumber": "968/1055",
+            "internalFaxNumber": "968/1054",
+            "email": "",
+            "number": 44,
+            "publicPhoneNumber": "0931/341055",
+            "name": "W\u00fcrzburg Hbf"
+        },
+        {
+            "mobilePhoneNumber": "",
+            "email": "",
+            "number": 0,
+            "name": "Noch nicht definiert"
+        }
+    ]
+}
