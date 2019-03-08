@@ -133,7 +133,7 @@ func TestRateLimiter(t *testing.T) {
 	s := c.StationDataAPI()
 
 	timeStartFirst := time.Now()
-	e.StationByID(1)
+	s.StationByID(1)
 	timeStartSecond := time.Now()
 	s.StationByID(1)
 	timeEnd := time.Now()
