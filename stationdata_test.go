@@ -133,7 +133,7 @@ func TestRateLimiter(t *testing.T) {
 	s := c.StationDataAPI()
 
 	timeStartFirst := time.Now()
-	s.StationByID(1)
+	e.StationByID(1)
 	timeStartSecond := time.Now()
 	s.StationByID(1)
 	timeEnd := time.Now()
@@ -142,5 +142,5 @@ func TestRateLimiter(t *testing.T) {
 	durationSecondCall := timeEnd.Sub(timeStartSecond)
 
 	assert.True(durationFirstCall.Seconds() < 1)
-	assert.True(durationSecondCall.Seconds() >= 3, "Duration must be >= 3 seonds, was "+durationSecondCall.String())
+	assert.True(durationSecondCall.Nanoseconds() >= 2900000000, "Duration must be >= 3 seonds, was "+durationSecondCall.String())
 }
